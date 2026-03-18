@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack:3.4
+    ports:
+      - "4566:4566"        # Main endpoint (all AWS services)
+      - "4510-4559:4510-4559"  # External service port range
+    environment:
+      - SERVICES=s3,sagemaker,stepfunctions,iam,logs
+      - DEBUG=0
+      - DATA_DIR=/var/lib/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  localstack_data:
