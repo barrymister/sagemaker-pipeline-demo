@@ -126,3 +126,17 @@ Open `step_functions/pipeline_definition.json`.
 3. The `States.Format('ingest-{}', $$.Execution.Name)` expression builds a unique job name per execution. Why do SageMaker job names need to be unique per run? What happens if you resubmit a pipeline with the same execution name?
 
 4. The `Train` state uses resource `arn:aws:states:::sagemaker:createTrainingJob.sync`. The `.sync` suffix is a Step Functions **optimized integration pattern**. What does `.sync` do that a plain `createTrainingJob` (without `.sync`) does not? Which is appropriate for a long-running training job?
+
+---
+
+## Production Cross-Reference
+
+These exercises cover cert theory. The following production systems implement the same patterns at scale — reference them during interviews to demonstrate real-world application:
+
+| Cert concept | Production implementation | Where |
+|---|---|---|
+| SageMaker Experiments (Ex. 3) | MLflow experiment tracking with direct API integration — single-run logging to avoid duplicate compute | [llm-eval-pipeline](https://github.com/barrymister/llm-eval-pipeline) |
+| Model Registry + approval gates (Ex. 5) | Model catalog with 40+ models, capability metadata, and compatibility guards that reject incompatible model/task combinations before inference | [ai-model-selector](https://npmjs.com/package/ai-model-selector) |
+| Step Functions orchestration (Ex. 6) | App Factory provisioning pipeline — 929-line idempotent pipeline with per-step skip guards, error handling, and resumption support | growth-engine (private) |
+| S3 data pipeline (Ex. 1) | 55-vendor database with automated affiliate tracking, revenue classification, and AI-driven product selection | growth-engine (private) |
+| Endpoint deployment + monitoring (Ex. 4-5) | SSE streaming endpoints with heartbeat keepalives for long-running inference, Cloudflare Tunnel routing, Coolify PaaS auto-deploy | growth-engine (private) |
