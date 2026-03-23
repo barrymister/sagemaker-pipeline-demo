@@ -136,7 +136,8 @@ These exercises cover cert theory. The following production systems implement th
 | Cert concept | Production implementation | Where |
 |---|---|---|
 | SageMaker Experiments (Ex. 3) | MLflow experiment tracking with direct API integration — single-run logging to avoid duplicate compute | [llm-eval-pipeline](https://github.com/barrymister/llm-eval-pipeline) |
-| Model Registry + approval gates (Ex. 5) | Model catalog with 40+ models, capability metadata, and compatibility guards that reject incompatible model/task combinations before inference | [ai-model-selector](https://npmjs.com/package/ai-model-selector) |
-| Step Functions orchestration (Ex. 6) | App Factory provisioning pipeline — 929-line idempotent pipeline with per-step skip guards, error handling, and resumption support | growth-engine (private) |
-| S3 data pipeline (Ex. 1) | 55-vendor database with automated affiliate tracking, revenue classification, and AI-driven product selection | growth-engine (private) |
-| Endpoint deployment + monitoring (Ex. 4-5) | SSE streaming endpoints with heartbeat keepalives for long-running inference, Cloudflare Tunnel routing, Coolify PaaS auto-deploy | growth-engine (private) |
+| Model Registry + approval gates (Ex. 5) | Model catalog with 76+ models, capability metadata, and compatibility guards that reject incompatible model/task combinations before inference | [ai-model-selector](https://npmjs.com/package/ai-model-selector) |
+| Step Functions orchestration (Ex. 6) | 929-line idempotent provisioning pipeline with per-step skip guards, error handling, and resumption support | Private production system |
+| S3 data pipeline (Ex. 1) | Fully automated programmatic SEO pipeline — AI content generation → Git PR → merge → deploy, 33 pages live across 3 products with daily cron | Private production system |
+| Endpoint deployment + monitoring (Ex. 4-5) | SSE streaming endpoints with heartbeat keepalives, tunnel routing, container PaaS auto-deploy, 35-service infrastructure dashboard | Private production system |
+| Data monitoring (Ex. 4) | AI visibility monitoring system scanning 4 AI search engines for brand mentions with automated alerting and optimization audit engine | Private production system |
